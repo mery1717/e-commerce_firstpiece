@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
 use App\Models\categorie;
+//use App\Image;
+//use Illuminate\Support\Facades\Response;
+//use Images;
 
 class CategorieController extends Controller
 {
@@ -13,10 +16,14 @@ class CategorieController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        
+         
+        $categories = categorie::all()->toArray();
+        return view('categories_de_produits.index' , compact('categories'));
+        
     }
-
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -34,14 +41,16 @@ class CategorieController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-                'Image' ,
+    {  $this->validate($request, [
+                'Image'         =>  'required',
                 'Nom'           => 'required' ,
                 'Description'   => 'required' ,
                 'Slug'          => 'required' ,
                 'Categorie_parente' 
-        ]);
+    ]);
+       
+
+      
 
         $categorie = new categorie([
                  'Image'               => $request->get('Image'),
@@ -50,9 +59,26 @@ class CategorieController extends Controller
                  'Slug'                => $request->get('Slug'),
                  'Categorie_parente'   => $request->get('Categorie_parente')
         ]);
-
+/*
+         $categorie = new categorie();
+                 
+                 $categorie->Nom                 = $request->input('Nom');
+                 $categorie->Description         = $request->input('Description');
+                 $categorie->Slug                = $request->input('Slug');
+                 $categorie->Categorie_parente   = $request->input('Categorie_parente');
+        
+        if ($request->hasfile('Image')){
+            $file = $request->file('Image');
+            $extension = $file->getClientOriginalExtension(); //getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/employee/', $filename);
+            $categorie->Image = '';
+        }
+*/
          $categorie->save();
-         return redirect()->route('categories_de_produits.create')->with('success', 'Votre catégorie est ajoutée avec succès');
+         return redirect()->route('categories_de_produits.index')->with('success', 'Votre catégorie est ajoutée avec succès');
+         
+
     }
 
     /**

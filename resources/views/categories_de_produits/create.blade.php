@@ -1,6 +1,6 @@
 @extends('ajout_categorie')
 
-@section('content')
+@section('content1')
 
 	<div class="row">
 		<div class="col">
@@ -23,7 +23,7 @@
 
 		@endif
 
-		<form method="post" action="{{url('categories_de_produits')}}">
+		<form method="post" action="{{url('categories_de_produits')}}" enctype="multipart/form-data">
 			{{csrf_field()}}
 
 			  <div class="form-group green-border-focus">
