@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 
 Route::resource('categories_de_produits','App\Http\Controllers\CategorieController');
+Route::resource('produits','App\Http\Controllers\ProduitController');

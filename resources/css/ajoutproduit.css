@@ -1,0 +1,42 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0px;
+	padding: 10px;
+	text-align: center;
+}
+
+header , footer {
+	padding: 20px;
+	backgroung: dodgerblue;
+	color: black;
+	border-radius: 20px;
+}
+section {
+	width: 65%;
+	float: left;
+	height: 400px;
+	background: grey;
+}
+.right {
+	width: 30%;
+	float: left;
+	height: 400px;
+	background: grey;
+	border-left: 2px solid red;
+	border-radius: 10px;
+	margin-left: 5%; 
+}
+.main * {
+	border-radius: 10px;
+}
+.main {
+	margin: 10px 0px;
+
+}
+.main::after {
+	content: "";
+	clear: both;
+	display: table;
+}
